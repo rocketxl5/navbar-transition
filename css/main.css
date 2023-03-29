@@ -1,0 +1,180 @@
+:root {
+  --background: rgba(85, 214, 190, 0.85);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background: #444;
+  font-family: sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.content {
+  height: 200vh;
+}
+
+header {
+  background-color: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+.logo {
+  margin: 0.5rem;
+}
+
+nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  text-align: left;
+  background: var(--background);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+
+nav ul {
+  margin-left: 1em;
+}
+
+nav li {
+  margin-bottom: 1em;
+}
+
+nav a {
+  color: #fff;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 175ms ease-in-out;
+}
+nav a:hover {
+  color: #444;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  position: relative;
+  background: #fff;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  top: 7px;
+}
+
+.nav-toggle-label span::after {
+  bottom: 7px;
+}
+
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 1fr) 1fr;
+  }
+
+  .logo {
+    grid-column: 2/3;
+  }
+
+  nav {
+    all: unset;
+    grid-column: 3/4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+    /* height: 100%; */
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: #444;
+    position: absolute;
+    bottom: -0.4em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav li:hover a::after {
+    transform: scale(1, 1);
+  }
+}
